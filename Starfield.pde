@@ -1,15 +1,41 @@
 //your code here
 void setup()
 {
-	//your code here
+	size(500,500);
+
 }
 void draw()
 {
-	//your code here
+	background(0);
+	NormalParticle one = new NormalParticle();
+	one.move();
+	one.show();
+	
 }
 class NormalParticle
 {
-	//your code here
+	double myX,myY,myAngle, mySpeed;
+	int myColor;
+	NormalParticle()
+	{
+		myColor =color(255,0,0);
+		myX = 250;
+		myY = 250;
+		myAngle = Math.random()*(2*Math.PI);
+		mySpeed = (Math.random()* 10);
+	}
+	void move()
+	{
+		myX = myX +(Math.cos(myAngle)*mySpeed);
+		myY = myY + (Math.sin(myAngle)*mySpeed);
+	}
+
+	void show()
+	{
+		noStroke();
+		fill(myColor);
+		ellipse((float)myX,(float)myY,5,5);
+	}
 }
 interface Particle
 {
