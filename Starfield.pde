@@ -1,4 +1,5 @@
 Particle[] particles;
+boolean lightSpeed = false;
 public void setup()
 {
 	
@@ -7,7 +8,8 @@ public void setup()
 	for (int i = 0; i< particles.length; i++)
 	{
 		particles[i] = new NormalParticle();
-		particles[0]= new OddballParticle();	
+		particles[0]= new OddballParticle();
+		particles[i/100] = new JumboParticle();	
 	}
 	
 }
@@ -15,13 +17,18 @@ public void setup()
 public void draw()
 {
 	background(0);
+
 	for (int i = 0; i < particles.length; i++)
 	{
 		particles[i].move();
 		particles[i].show();
 	}
-
 	
+}
+
+void mousePressed()
+{
+	lightSpeed = !lightSpeed;
 }
 class NormalParticle implements Particle
 {
@@ -45,9 +52,19 @@ class NormalParticle implements Particle
 
 	public void show()
 	{
-		noStroke();
-		fill(myColor);
-		ellipse((float)myX,(float)myY,2,2);
+		if (lightSpeed == false)
+		{
+			noStroke();
+			fill(myColor);
+			ellipse((float)myX,(float)myY,2,2);
+		}
+		
+		else
+		{
+			stroke(255);
+			line((float)myX,(float)myY,(float)(myX +Math.cos(myAngle)),(float)(myY + Math.sin(myAngle)));
+		}
+		
 	}
 }
 interface Particle
@@ -72,14 +89,19 @@ class OddballParticle implements Particle
 
 	public void show()
 	{
+		fill(255,0,0);
 		ellipse(myX,myY,10,10);
 	}
 
 	
 	
 }
-class JumboParticle implements Particle
+class JumboParticle extends NormalParticle
 {
-	int myX, myY;
+	public void show()
+	{
+		fill(255);
+		ellipse((float)myX,(float)myY,10,10);
+	}
 }
 
