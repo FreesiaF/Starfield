@@ -29,6 +29,7 @@ public void draw()
 void mousePressed()
 {
 	lightSpeed = !lightSpeed;
+
 }
 class NormalParticle implements Particle
 {
@@ -62,7 +63,8 @@ class NormalParticle implements Particle
 		else
 		{
 			stroke(255);
-			line((float)myX,(float)myY,(float)(myX +Math.cos(myAngle)),(float)(myY + Math.sin(myAngle)));
+			strokeWeight(1);
+			line((float)myX,(float)myY,(float)(myX +Math.cos(myAngle)*20),(float)(myY + Math.sin(myAngle)*20));
 		}
 		
 	}
@@ -89,6 +91,7 @@ class OddballParticle implements Particle
 
 	public void show()
 	{
+		noStroke();
 		fill(255,0,0);
 		ellipse(myX,myY,10,10);
 	}
@@ -100,8 +103,18 @@ class JumboParticle extends NormalParticle
 {
 	public void show()
 	{
-		fill(255);
-		ellipse((float)myX,(float)myY,10,10);
+		if (lightSpeed == false)
+		{
+			fill(255);
+			ellipse((float)myX,(float)myY,10,10);
+		}
+		
+		else 
+		{
+			stroke(255);
+			strokeWeight(2);
+			line((float)myX,(float)myY,(float)(myX +Math.cos(myAngle)*20),(float)(myY + Math.sin(myAngle)*20));
+		}
 	}
 }
 
