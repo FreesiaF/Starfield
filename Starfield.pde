@@ -23,6 +23,13 @@ public void draw()
 		particles[i].move();
 		particles[i].show();
 	}
+	fill(0,0,0,75);
+	noStroke();
+	ellipse(250,250,50,50);
+	ellipse(250,250,75,75);
+	ellipse(250,250,100,100);
+	ellipse(250,250,150,150);
+	ellipse(250,250,200,200);
 	
 }
 
