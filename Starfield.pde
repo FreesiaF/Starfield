@@ -4,7 +4,7 @@ public void setup()
 {
 	
 	size(500,500);
-	particles = new Particle[1000];
+	particles = new Particle[2000];
 	for (int i = 0; i< particles.length; i++)
 	{
 		particles[i] = new NormalParticle();
@@ -30,7 +30,7 @@ public void draw()
 	ellipse(250,250,100,100);
 	ellipse(250,250,150,150);
 	ellipse(250,250,200,200);
-	
+	ellipse(250,250,250,250);
 }
 
 void mousePressed()
@@ -52,8 +52,17 @@ class NormalParticle implements Particle
 	}
 	public void move()
 	{
-		myX = myX +(Math.cos(myAngle)*mySpeed);
-		myY = myY + (Math.sin(myAngle)*mySpeed);
+		if (lightSpeed ==false)
+		{
+			myX = myX +(Math.cos(myAngle)*mySpeed);
+			myY = myY + (Math.sin(myAngle)*mySpeed);
+		}
+		
+		else 
+		{
+			myX = myX +(Math.cos(myAngle)*(mySpeed*5));
+			myY = myY + (Math.sin(myAngle)*(mySpeed*5));
+		}
 
 
 	}
